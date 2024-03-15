@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+    <link href="https://api.mapbox.com/mapbox-gl-js/v3.1.2/mapbox-gl.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="./style/style.css">
+    <script src="https://api.mapbox.com/mapbox-gl-js/v3.1.2/mapbox-gl.js"></script>
+    <title>Trouver nos écrans</title>
+</head>
+<body>
+    <header>
+        <a href="https://fillupmedia.fr" class="back-cta">
+            <img class="arrow" src="./assets/arrow-left-solid.svg"></img>
+            <p class="back-text">retourner sur le site</p>
+            <p class="back-text-mobile">Retour</p>
+        </a>
+        <div>
+            <h1 class="title">Trouver nos écrans</h1>
+        </div>
+        <div class="image-container">
+            <img class="image" src="https://fillupmedia.fr/wp-content/uploads/2022/11/cropped-logo-light.png" alt="Logo">
+        </div>
+    </header>
+    <main>
+        <div class="container">
+            <div class="settings-container">
+                <div class="settings">
+                    <form class="form" onsubmit="event.preventDefault(); findLocationAndUpdateMap();">
+                        <div class="flex-col">
+                            <div class="label">
+                                <img src="./assets/ponter-black.svg">
+                                <label for="search">Adresse de votre établissement</label>    
+                            </div>
+                            
+                            <input type="text" name="search" id="search" placeholder="ex: 53 rue président Kruger, 69008 Lyon" oninput="suggestAddress()" autocomplete="off">
+                            <div id="addressSuggestions" class="suggestions"></div>
+                        </div>
+                        <div class="flex-col">
+                            <div class="label">
+                                <img src="./assets/target.svg">
+                                <label for="distance">Rayon de diffusion (en km)</label>    
+                            </div>
+                            <div class="range">
+                                <input type="range" value="0" min="1" max="300" name="distance" id="distance" placeholder="Rayon de diffusion" oninput="updateDistanceValue(this.value)">
+                                <span id="distanceValue">0</span>
+                            </div>                
+                        </div>
+                        <input id="button" class="button" type="submit" value="Rechercher" onclick="showForm()">
+                        <div class="mobile-btn-container">
+                            <input id="button-mobile" class="button" type="submit" value="Rechercher" onclick="showDevisBtn()">
+                            <button class="devis" onclick="showDevis()">Demander un devis</button>   
+                        </div>
+                        
+                    </form>
+                </div>
+                <div class="settings formulaire">
+                    <div class="form-container">
+                        <div class="croix" onclick="hideForm()">
+                            <img src="./assets/xmark.svg"></img>
+                        </div>
+                        <div class="croix-mobile" onclick="hideFormMobile()">
+                            <img src="./assets/xmark.svg"></img>
+                        </div>
+                        <form class="form-content" id="formulaire" action="">
+                            <div class="form row">
+                                <div class="flex-col">
+                                    <label for="lastname">Nom</label>
+                                    <input type="text" id="lastname" name="lastname" placeholder="ex: Dupont" autocomplete="off">
+                                </div>
+                                <div class="flex-col">
+                                    <label for="firstname">Prénom</label>
+                                    <input type="text" id="firstname" name="firstname" placeholder="ex: Jean" autocomplete="off">
+                                </div>
+                                <div class="flex-col">
+                                    <label for="company">Enseigne</label>
+                                    <input type="text" id="company" name="company" placeholder="ex: intersport" autocomplete="off">
+                                </div>
+                                <div class="flex-col">
+                                    <label for="zip">Code postal</label>
+                                    <input type="number" id="zip" name="zip" placeholder="ex: 69008" autocomplete="off">
+                                </div>
+                                <div class="flex-col">
+                                    <label for="email">Email</label>
+                                    <input type="email" id="email" name="email" placeholder="ex: paul@gmail.com" autocomplete="off">
+                                </div>                                            
+                                <div class="flex-col">
+                                    <label for="phone">Téléphone</label>
+                                    <input type="tel" id="phone" name="phone" placeholder="ex: 02 04 15 65 84" autocomplete="off">
+                                </div>
+                            </div>
+                            <input id="searchAdress" class="searchAdress" type="submit" value="Demander un devis" onclick="hideForm()">
+                        </form>
+                    </div>
+                </div>
+            </div>            
+        </div> 
+        <div id="map"></div>
+        <div class="mask_map"></div>
+        <div class="mobile_card"></div> 
+    </main>
+    <script src="./js/script.js"></script>
+    <!-- Start of HubSpot Embed Code -->
+    <script type="text/javascript" id="hs-script-loader" async defer src="//js-eu1.hs-scripts.com/25713695.js"></script>
+    <!-- End of HubSpot Embed Code -->
+</body>
+</html>
